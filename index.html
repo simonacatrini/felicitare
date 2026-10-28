@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aniversarea noastră 💗</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Inimioarele care plutesc în fundal -->
+    <div class="inimioare" aria-hidden="true"></div>
+
+    <main>
+        <!-- Plicul cu scrisoarea -->
+        <section id="inceput" aria-label="Scrisoarea ta">
+            <div class="plic" tabindex="0" aria-label="Arată scrisoarea">
+                <div class="scrisoare">
+                    <h1>Pentru tine 💌</h1>
+
+                    <button id="start" type="button">
+                        Mai întâi controlul identității,
+                        te rugăm să răspunzi la câteva întrebări
+                    </button>
+                </div>
+
+                <div class="buzunar"></div>
+
+                <div class="clapa">
+                    <span class="sigiliu">♥</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Întrebările apar aici, una câte una -->
+        <section id="quiz" class="panou" aria-labelledby="titlu" hidden>
+            <p id="pas" class="pas"></p>
+
+            <h2 id="titlu" tabindex="-1"></h2>
+
+            <form id="formular">
+                <!-- JavaScript adaugă variantele de răspuns -->
+                <fieldset id="optiuni">
+                    <legend class="sr-only">
+                        Alege răspunsul
+                    </legend>
+                </fieldset>
+
+                <!-- Bara pentru întrebarea a treia -->
+                <div id="slider" hidden>
+                    <label for="iubire">
+                        Câtă iubire?
+
+                        <output id="valoare" for="iubire">
+                            50%
+                        </output>
+                    </label>
+
+                    <input id="iubire" type="range" min="1" max="100" value="50">
+
+                    <div class="pista" aria-hidden="true">
+                        <div id="umplere"></div>
+                    </div>
+                </div>
+
+                <button id="finish" type="submit">
+                    Finish
+                </button>
+            </form>
+
+            <!-- Emoji-ul și mesajul de după răspuns -->
+            <div id="feedback" aria-live="polite" hidden>
+                <div id="emoji" class="emoji" aria-hidden="true"></div>
+
+                <p id="raspuns"></p>
+
+                <button id="continua" type="button"></button>
+            </div>
+        </section>
+
+        <!-- Mesajul de după terminarea verificării -->
+    <section id="gata" class="surprize" hidden>
+        <h2>Povestea noastră continuă… 💗</h2>
+    
+        <div class="carduri">
+            <button id="card-amintiri" class="card" type="button">
+                <span class="card-emoji">📸</span>
+                <span>Amintirile noastre</span>
+            </button>
+    
+            <button id="card-secret" class="card" type="button">
+                <span class="card-emoji">💌</span>
+                <span>Mesaj secret</span>
+            </button>
+    
+            <button id="card-despartire" class="card" type="button">
+            <span class="card-emoji">😢</span>
+                <span>Data când o să ne despărțim</span>
+            </button>
+        </div>
+    
+        <p id="mesaj-fugar" aria-live="polite"></p>
+    </section>
+    
+    <!-- Fereastra cu amintiri -->
+    <dialog id="amintiri" class="fereastra">
+        <button class="inchide" type="button" aria-label="Închide">×</button>
+    
+        <h2>Amintirile noastre 📸</h2>
+    
+     
+        <div class="galerie">
+            <!-- Aici vom adăuga fotografiile voastre. -->
+        </div>
+    </dialog>
+    
+    <!-- Fereastra cu mesajul secret -->
+    <dialog id="secret" class="fereastra">
+        <button class="inchide" type="button" aria-label="Închide">×</button>
+    
+        <div id="control-parola">
+            <h2>Un mesaj doar pentru tine 💌</h2>
+    
+            <form id="formular-parola">
+                <label for="parola">Introdu parola:</label>
+    
+                <input id="parola" type="password" inputmode="numeric" autocomplete="off" maxlength="8" required>
+    
+                <p class="hint">
+                    Hint: aniversarea noastră 💗
+                </p>
+    
+                <p id="eroare-parola" aria-live="polite"></p>
+    
+                <button type="submit">
+                    Descoperă mesajul
+                </button>
+            </form>
+        </div>
+    
+        <div id="mesaj-secret" hidden>
+            <h2>La mulți ani nouă, iubirea mea! 💗</h2>
+    
+            <div class="urare">
+                <p>
+                    De când te cunosc, viața mea a devenit mai
+                    frumoasă. Ai adus bucurie în lucrurile mici
+                    și ai făcut din zilele obișnuite amintiri
+                    pe care vreau să le păstrez mereu.
+                </p>
+    
+                <p>
+                    Nu credeam că voi întâlni vreodată un om
+                    atât de minunat ca tine. Iubesc felul în
+                    care mă faci să râd, mintea ta, frumusețea
+                    ta și toate acele lucruri mici care te fac
+                    să fii tu.
+                </p>
+    
+                <p>
+                    Prețuiesc fiecare moment petrecut împreună:
+                    fiecare îmbrățișare, fiecare conversație
+                    și fiecare clipă în care te am aproape.
+                    Pentru mine, ești cel mai frumos, amuzant,
+                    deștept și extraordinar om din univers.
+                </p>
+    
+                <p>
+                    Te iubesc pentru tot ceea ce ești și mă
+                    bucur că ne-am găsit. Îmi doresc să adunăm
+                    în continuare amintiri, să creștem împreună
+                    și să ne alegem unul pe celălalt,
+                    în fiecare zi.
+                </p>
+    
+                <p>
+                    La mulți ani nouă, Cristian!
+                    Cu tine, mai departe. Mereu. ♥
+                </p>
+            </div>
+        </div>
+    </dialog>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,580 @@
+/* Resetarea stilurilor implicite */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* Fundalul paginii */
+body {
+    min-height: 100vh;
+    overflow-x: clip;
+
+    background-color: #ffe7eb;
+    background-image: url("images/fundal-aniversare.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    font-family: Georgia, serif;
+    color: #743b50;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100svh;
+    padding: 30px 18px;
+
+    display: grid;
+    place-items: center;
+}
+
+/* Inimioarele din fundal */
+.inimioare {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.45;
+
+    background-image: url("images/inimioare-transparente.png");
+    background-size: 100vw 100vh;
+    background-repeat: repeat-y;
+    background-position: center 0;
+
+    animation: urca 25s linear infinite;
+}
+
+@keyframes urca {
+    to {
+        background-position: center -100vh;
+    }
+}
+
+/* Butoanele */
+button {
+    padding: 13px 20px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #a63859;
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 1.5;
+
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background: #852640;
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: default;
+}
+
+button:focus-visible,
+input:focus-visible,
+.plic:focus-visible {
+    outline: 3px solid #772c62;
+    outline-offset: 5px;
+}
+
+/* Plicul */
+.plic {
+    position: relative;
+
+    width: min(340px, 84vw);
+    aspect-ratio: 1.55;
+    margin-top: 140px;
+
+    background: #e5c29c;
+    border-radius: 6px;
+
+    perspective: 1000px;
+
+    box-shadow: 0 18px 40px rgba(100, 45, 55, 0.2);
+}
+
+/* Scrisoarea din interior */
+.scrisoare {
+    position: absolute;
+    bottom: 8%;
+    left: 7%;
+    z-index: 1;
+
+    width: 86%;
+    height: 100%;
+    padding: 20px 15px;
+
+    background: #fffaf2;
+    border-radius: 5px;
+
+    text-align: center;
+
+    transition: transform 0.6s ease;
+}
+
+.scrisoare h1 {
+    margin-bottom: 12px;
+
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.scrisoare button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+
+    visibility: hidden;
+    transition: visibility 0s 0.6s;
+}
+
+/* Partea din față a plicului */
+.buzunar {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background: #f5dfc5;
+    border-radius: 0 0 6px 6px;
+
+    clip-path: polygon(0 0,
+            50% 48%,
+            100% 0,
+            100% 100%,
+            0 100%);
+
+    pointer-events: none;
+}
+
+/* Clapa care se deschide */
+.clapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    width: 100%;
+    height: 60%;
+
+    transform-origin: top center;
+    pointer-events: none;
+
+    transition:
+        transform 0.5s ease,
+        z-index 0s linear 0.25s;
+}
+
+.clapa::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: #edcfad;
+
+    clip-path: polygon(0 0,
+            100% 0,
+            50% 100%);
+}
+
+/* Sigiliul roșu */
+.sigiliu {
+    position: absolute;
+    top: 72%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+    place-items: center;
+
+    border: 3px solid #a52b39;
+    border-radius: 47% 53% 48% 52%;
+
+    background: radial-gradient(circle at 35% 30%,
+            #d95360,
+            #a51e32 70%);
+
+    color: #f4b3ac;
+    font-size: 26px;
+
+    box-shadow: 0 4px 8px rgba(80, 15, 25, 0.3);
+    backface-visibility: hidden;
+}
+
+/* Deschiderea plicului */
+.plic:is(:hover, :focus-within, .deschis) .clapa {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.plic:is(:hover, :focus-within, .deschis) .scrisoare {
+    transform: translateY(-85%);
+    transition-delay: 0.3s;
+}
+
+.plic:is(:hover, :focus-within, .deschis) .scrisoare button {
+    visibility: visible;
+    transition-delay: 0.3s;
+}
+
+/* Cardul cu întrebările */
+.panou {
+    width: min(560px, 100%);
+    min-width: 0;
+
+    padding: clamp(24px, 5vw, 42px);
+
+    background: rgba(255, 250, 245, 0.96);
+    border: 1px solid #f1cad4;
+    border-radius: 25px;
+
+    box-shadow: 0 20px 60px rgba(116, 59, 80, 0.1);
+
+    text-align: center;
+}
+
+.pas {
+    margin-bottom: 15px;
+
+    color: #a6697d;
+    font-size: 14px;
+}
+
+h2 {
+    margin-bottom: 24px;
+
+    font-size: clamp(24px, 5vw, 32px);
+    line-height: 1.3;
+}
+
+/* Variantele de răspuns */
+fieldset {
+    display: grid;
+    gap: 12px;
+
+    margin-bottom: 25px;
+    border: none;
+
+    text-align: left;
+}
+
+.alegere {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px;
+
+    background: white;
+    border: 1px solid #eccbd6;
+    border-radius: 13px;
+
+    cursor: pointer;
+}
+
+.alegere:has(input:checked) {
+    background: #ffe5ee;
+    border-color: #a63859;
+}
+
+input {
+    accent-color: #a63859;
+}
+
+.alegere input {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+}
+
+/* Emoji-urile și mesajele */
+.emoji {
+    margin-bottom: 18px;
+    font-size: 82px;
+}
+
+#feedback p,
+#gata p {
+    margin-bottom: 22px;
+
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+/* Bara de iubire */
+#slider {
+    margin: 30px 0;
+    text-align: left;
+}
+
+#slider label {
+    display: block;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+#valoare {
+    color: #a63859;
+    font-weight: bold;
+}
+
+#iubire {
+    display: block;
+
+    width: 100%;
+    height: 24px;
+    margin-bottom: 25px;
+
+    cursor: pointer;
+}
+
+#iubire:disabled {
+    opacity: 1;
+    cursor: default;
+}
+
+/* Permitem barei să se lungească în afara cardului */
+.pista {
+    height: 18px;
+
+    background: #f1dce2;
+    border-radius: 20px;
+
+    overflow: visible;
+}
+
+#umplere {
+    width: 50%;
+    height: 100%;
+
+    background: linear-gradient(to right,
+            #df789a,
+            #b72e5b);
+
+    border-radius: inherit;
+}
+
+/* Text disponibil pentru cititoarele de ecran */
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+/* Reducerea mișcării, dacă utilizatorul a ales asta */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+    }
+
+    .inimioare {
+        animation: none;
+    }
+}
+/* Cele trei carduri */
+.surprize {
+    width: min(1000px, 100%);
+    text-align: center;
+}
+
+.carduri {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 35px;
+}
+
+.card {
+    min-height: 230px;
+    padding: 28px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    background: #fffaf5;
+    color: #743b50;
+
+    border: 1px solid #eccbd6;
+    border-radius: 24px;
+
+    font-size: 21px;
+    box-shadow: 0 12px 35px rgba(116, 59, 80, 0.12);
+
+    transition:
+        background-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.card:hover {
+    background: #ffe5ee;
+    box-shadow: 0 16px 40px rgba(116, 59, 80, 0.2);
+}
+
+.card-emoji {
+    font-size: 54px;
+}
+
+#card-despartire {
+    z-index: 4;
+    touch-action: manipulation;
+}
+
+#mesaj-fugar {
+    min-height: 30px;
+    margin-top: 24px;
+    font-style: italic;
+}
+
+/* Ferestrele care se deschid */
+.fereastra {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+
+    width: min(600px, calc(100% - 32px));
+    max-height: 85vh;
+    padding: 55px 30px 35px;
+
+    overflow-y: auto;
+
+    background: #fffaf5;
+    color: #743b50;
+
+    border: 1px solid #eccbd6;
+    border-radius: 24px;
+
+    text-align: center;
+    font-family: Georgia, serif;
+
+    box-shadow: 0 25px 80px rgba(70, 25, 40, 0.25);
+}
+
+.fereastra::backdrop {
+    background: rgba(65, 25, 40, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.inchide {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+
+    padding: 2px 12px;
+    background: transparent;
+    color: #a63859;
+    font-size: 30px;
+}
+
+.inchide:hover {
+    background: #ffe5ee;
+}
+
+.fereastra p {
+    line-height: 1.8;
+}
+
+/* Parola */
+#formular-parola {
+    display: grid;
+    gap: 16px;
+}
+
+#parola {
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+
+    border: 1px solid #dca8b9;
+    border-radius: 12px;
+
+    background: white;
+    color: #743b50;
+
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.hint {
+    color: #a6697d;
+    font-size: 15px;
+    font-style: italic;
+}
+
+#eroare-parola {
+    color: #a52b39;
+}
+
+#eroare-parola:empty {
+    display: none;
+}
+
+/* Mesajul de dragoste */
+.urare {
+    text-align: left;
+    font-size: 18px;
+}
+
+.urare p+p {
+    margin-top: 20px;
+}
+
+.galerie {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.galerie img {
+    width: 100%;
+    border-radius: 14px;
+}
+
+/* Telefon */
+@media (max-width: 650px) {
+    .carduri {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .card {
+        min-height: 160px;
+    }
+
+    .fereastra {
+        padding: 55px 22px 30px;
+    }
+}
